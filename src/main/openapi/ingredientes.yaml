@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: Ingrediente
+  description: |
+    API para realização de um CRUD básico em cima de ingredientes de uma pizza
+  version: 1.0.0
+paths:
+  /ingredientes:
+    summary: CRUD de ingredientes
+    post:
+      operationId: cadastraIngrediente
+      description: Cadastra Ingrediente
+      summary: Cadastra um novo ingrediente
+      requestBody:
+        description: Cadastra um ingrediente informando seu nome, preço e quantidade na pizza
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NovoIngredienteRequest'
+      responses:
+        '201':
+          description: Created
+
+components:
+  schemas:
+    NovoIngredienteRequest:
+      description: ''
+      type: object
+      properties:
+        nome:
+          type: string
+          required: true
+          minLength: 1
+        preco:
+          type: number
+          minimum: 1
+          required: true
+        quantidade:
+          type: integer
+          minimum: 1
+          required: true
+      required:
+        - nome
+        - preco
+        - quantidate
